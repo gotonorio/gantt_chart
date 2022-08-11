@@ -1,6 +1,7 @@
 # https://plot.ly/python/gantt/
 # https://megatenpa.com/python/plotly/px/gantt-charts/#color
 # http://hxn.blog.jp/archives/9505573.html
+# https://qiita.com/11kenterada/items/22537eeab6e5f1acccfe
 
 import plotly.express as px
 import pandas as pd
