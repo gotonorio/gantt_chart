@@ -1,12 +1,11 @@
 # https://plot.ly/python/gantt/
 # https://megatenpa.com/python/plotly/px/gantt-charts/#color
 # http://hxn.blog.jp/archives/9505573.html
-# https://qiita.com/11kenterada/items/22537eeab6e5f1acccfe
 
-import plotly.express as px
-import pandas as pd
-import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.express as px
 
 
 def main(graph_type='px') -> None:
@@ -50,7 +49,9 @@ def df_to_list(df) -> list:
 
 
 def plot_by_mpl(df) -> None:
-    """ 無理やりmatplotlibでガントチャート """
+    """ 無理やりmatplotlibでガントチャート 
+    https://qiita.com/11kenterada/items/22537eeab6e5f1acccfe
+    """
     # DataFrameをlistに変換。
     data_list = df_to_list(df)
     data_list.reverse()
@@ -81,4 +82,4 @@ def plot_by_mpl(df) -> None:
 
 if __name__ == "__main__":
     """ matplotlibでグラフ表示の場合は、main('plt')とする。 """
-    main('plt')
+    main()
