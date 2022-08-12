@@ -24,9 +24,7 @@ def main(graph_type='px') -> None:
     if graph_type == 'px':
         plot_by_plotly(df)
     else:
-        # DataFrameをlistに変換。
-        data_list = df_to_list(df)
-        plot_by_mpl(data_list)
+        plot_by_mpl(df)
 
 
 def plot_by_plotly(df) -> None:
@@ -38,19 +36,23 @@ def plot_by_plotly(df) -> None:
                       xaxis_title='年月', yaxis_title='作業項目',
                       xaxis_title_font_size=14, yaxis_title_font_size=14)
     # 枠線とグリッド線の設定（x軸グリッドは5日表示=5x24x60x60x1000）
-    fig.update_xaxes(linecolor='black', gridcolor='gray',mirror=True, tickformat="%y/%m", dtick = 'M2')
-    fig.update_yaxes(linecolor='black', gridcolor='gray',mirror=True, autorange='reversed')
+    fig.update_xaxes(linecolor='black', gridcolor='gray',
+                     mirror=True, tickformat="%y/%m", dtick='M2')
+    fig.update_yaxes(linecolor='black', gridcolor='gray', mirror=True, autorange='reversed')
     # ガントチャート表示
     fig.show()
 
 
 def df_to_list(df) -> list:
-    l_2d = df.values.tolist()
-    return l_2d
+    """ DataFrameをリストに変換 """
+    data_list = df.values.tolist()
+    return data_list
 
 
-def plot_by_mpl(data_list):
+def plot_by_mpl(df) -> None:
     """ 無理やりmatplotlibでガントチャート """
+    # DataFrameをlistに変換。
+    data_list = df_to_list(df)
     data_list.reverse()
     # データの取り出し。
     titles, start, end, res = list(zip(*data_list))
@@ -64,10 +66,13 @@ def plot_by_mpl(data_list):
     fig, ax = plt.subplots(figsize=(12, 6))
     # タイトル領域
     fig.subplots_adjust(left=0.1, right=0.95)
-    # 作図 
+    # 作図
     ax.barh(y=titles, width=edate - bdate, left=bdate, height=0.5)
     #  横軸目盛の表示形式をdateに変更する
     ax.xaxis_date()
+    # グリッド線をグラフの後面に表示する
+    ax.set_axisbelow(True)
+    ax.grid()
 
     # 描画
     plt.savefig("hoge.png")
@@ -76,4 +81,4 @@ def plot_by_mpl(data_list):
 
 if __name__ == "__main__":
     """ matplotlibでグラフ表示の場合は、main('plt')とする。 """
-    main()
+    main('plt')
