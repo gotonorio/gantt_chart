@@ -1,6 +1,7 @@
 # https://plot.ly/python/gantt/
 # https://megatenpa.com/python/plotly/px/gantt-charts/#color
 # http://hxn.blog.jp/archives/9505573.html
+# programming by N.Goto
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
@@ -32,7 +33,7 @@ def plot_by_plotly(df) -> None:
                       title='第2回大規模修繕工事 工程表（案）（2022年9月〜2024年11月）', height=450, width=950)
     # グラフ全体とホバーのフォントサイズ変更
     fig.update_layout(font_size=14, hoverlabel_font_size=14, hoverlabel_font_color='white',
-                      xaxis_title='年月', yaxis_title='作業項目',
+                      xaxis_title='工程', yaxis_title='作業項目',
                       xaxis_title_font_size=14, yaxis_title_font_size=14)
     # 枠線とグリッド線の設定（x軸グリッドは5日表示=5x24x60x60x1000）
     fig.update_xaxes(linecolor='black', gridcolor='gray',
